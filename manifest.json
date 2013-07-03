@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_name__",
+  "version": "1.0",
+  "description": "__MSG_description__",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "options_page": "options.html",
+  "icons": {
+    "19" : "images/facebook-19.png",
+    "48" : "images/facebook-48.png",
+    "128" : "images/facebook-128.png"
+  },
+  "browser_action": {
+    "default_icon": "images/facebook-19.png",
+    "default_title": "Facebook Timer",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["tabs","background","notifications"],
+  "web_accessible_resources": [
+    "images/facebook-48.png"
+  ],
+  "default_locale" : "en"
+}
