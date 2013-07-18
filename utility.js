@@ -20,8 +20,8 @@ $( document ).ready(function() {
 			$('#error_span').show();
 			return;
 		}
-		localStorage.setItem("timer", (time_value * 60000));
-		localStorage.setItem("facebookshutdown", (shutdown_value * 60000));
+		chrome.extension.getBackgroundPage().setFacebookTimer(time_value);
+		chrome.extension.getBackgroundPage().setFacebookTimerShutdown(shutdown_value);
 		$('#confirm_span').html("Yeah Good!");
 		$('#confirm_span').show();
 	});
