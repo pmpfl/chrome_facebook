@@ -15,6 +15,10 @@
   	"message" : "Set timer value (minutes): ",
   	"description": "option timer"	
   },
+  "minutes" : {
+    "message" : " minutes",
+    "description": "minutes" 
+  },
   "btn_submit" : {
   	"message" : "Save",
   	"description": "save button"	
@@ -24,31 +28,7 @@
     "description": "Clean button"  
   },
   "timer_shutdown_label" : {
-    "message" : "Set facebook shutdown value (minutes):",
+    "message" : "Time :",
     "description": "shutdown label"
-  },
-  "msg1" : {
-    "message" : "Sai do facebook!",
-    "description": "msg1"  
-  },
-  "msg2" : {
-    "message" : "Vai dormir!",
-    "description": "msg2"  
-  },
-  "msg3" : {
-    "message" : "Olha qe o facebook vai fechar!",
-    "description": "msg3"  
-  },
-  "msg4" : {
-    "message" : "vou t fechar o facebook nanana!",
-    "description": "msg4"  
-  },
-  "msg5" : {
-    "message" : "adeus bebe!",
-    "description": "msg5"  
-  },
-  "msg6" : {
-    "message" : "Qe caralho ja estas a ver outra vez a mesma coisa!",
-    "description": "msg6"  
   }
 }

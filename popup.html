@@ -8,23 +8,17 @@
         <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body>
+        <div id="fb-root"></div>
         <div class="well">
             <h1 id="title" algin="center"></h1>
-            </br>
-            <fieldset>
-                <legend id="timer"></legend>
-                <label id="timer_label"></label>
-                <input id="time_input" type="input-medium">
-                <label id="timer_shutdown_label"></label>
-                <input id="time_shutdown_input" type="input-medium">
-            </fieldset>
+            <span class="badge badge-success" id="confirm_span"></span>
+            <span class="label label-important" id="error_span"></span>
+            <label id="timer_shutdown_label"></label>
+            <select id="time_shutdown_select" style="width: 100px;"></select><span id="minutes"></span>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary" id="btn_submit"></button>
                 <button type="button" class="btn" id="btn_clean"></button>
             </div>
-            </br>
-            <span class="badge badge-success" id="confirm_span"></span>
-            <span class="label label-important" id="error_span"></span>
         </div>
     </body>
 </html>

@@ -1,13 +1,16 @@
-var myArray = ["msg1", "msg2", "msg3", "msg4", "msg5", "msg6"];
-
 var facebooktabs = [];
-
+var url = "https://www.facebook.com/";
 var timer_flag = false;
-var facebook;
-var facebookshutdown;
+var facebookshutdown = 0;
+var facebookShutdownValue = 0;
+var countdown = 0;
+
+chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
+chrome.browserAction.setBadgeText({text: ''});
 
 chrome.tabs.onCreated.addListener(function(tab) {
-    if (tab.url.match("https://www.facebook.com/")) {
+        console.log("New tab");
+    if (tab.url.match(url)) {
         var tabIdentification = tab.id;
         console.log("New facebook " + tabIdentification);
         facebooktabs.push(tabIdentification);
@@ -44,7 +47,8 @@ chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab) {
         facebooktabs.splice(tabInde,tabInde+1);
     }  
 
-    if (tab.url.match("https://www.facebook.com/")) {
+    if (tab.url.match(url)) {
+        console.log("Facebook tab " + tabInde);
         var tabIdentification = tab.id;
         facebooktabs.push(tabIdentification);
         if (facebooktabs.length == 1){
@@ -58,24 +62,34 @@ chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab) {
 
 });
 
+function countdownT(){
+    console.log("countdownT");
+    if(timer_flag) {
+        facebookShutdownValue = facebookShutdownValue - 1000;
+        chrome.browserAction.setBadgeText({text: ""+ Math.floor((facebookShutdownValue - 1000) / 60000)});
+    }
+}
+
 function setTimer(){
+    console.log("timer start");
     if (!timer_flag) {
-        var facebook_timer = localStorage.getItem("timer");
-        var facebook_shutdown = localStorage.getItem("facebookshutdown");
-        facebook = setInterval(openPopUp, facebook_timer);
-        facebookshutdown = setInterval(closeFacebooktabs, facebook_shutdown);
         timer_flag = true;
+        facebookShutdownValue = localStorage.getItem("facebookshutdown");
+        facebookshutdown = setInterval(closeFacebooktabs, facebookShutdownValue);
+        countdown = setInterval(countdownT, 1000)
     }
 }
 
 function stopInterval() {
-  clearInterval(facebook);
   clearInterval(facebookshutdown);
+  clearInterval(countdown);
+  chrome.browserAction.setBadgeText({text: ''});
   timer_flag = false;
 }
 
 function closeFacebooktabs() {
     chrome.tabs.remove(facebooktabs);
+    timer_flag = false;
 }
 
 function openPopUp() {
@@ -87,10 +101,11 @@ function openPopUp() {
     notification.show();
 }
 
-function setFacebookTimer(value) {
-    localStorage.setItem("timer", (value * 60000));
-}
-
 function setFacebookTimerShutdown(value) {
     localStorage.setItem("facebookshutdown", (value * 60000));
+}
+
+function getFacebookTimerShutDown() {
+    var facebook_shutdown = localStorage.getItem("facebookshutdown");
+    return facebook_shutdown / 60000;
 }
